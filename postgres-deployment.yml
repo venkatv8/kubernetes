@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    name: postgres
+    author : venky
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgres-app
+  template:
+    metadata:
+      name:  postgres-pod
+      labels:
+        name: postgres
+    spec:
+      containers:
+        - name: mypostgres
+          image: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: venky
+            - name: POSTGRES_USER
+              value: myuser
+            - name: POSTGRES_DB
+              value: mybd
+...
